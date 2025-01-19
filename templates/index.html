@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 20px;
+        }
+        #video {
+            margin-top: 20px;
+            border: 2px solid black;
+            max-width: 100%;
+            max-height: 80vh;
+        }
+        .stats {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .stat-item {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live People Tracker</h1>
+    <div id="video-container">
+        <img id="video" src="{{ url_for('video_feed') }}" alt="Live Video Feed" />
+    </div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <strong>Total People Count:</strong> <span id="totalCount">0</span>
+        </div>
+        <div class="stat-item">
+            <strong>Happy People Count:</strong> <span id="happyCount">0</span>
+        </div>
+        <div class="stat-item">
+            <strong>Not Happy People Count:</strong> <span id="notHappyCount">0</span>
+        </div>
+                <div class="stat-item">
+            <strong>Neutral People Count:</strong> <span id="neutralCount">0</span>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch and update counts
+        function fetchCounts() {
+            fetch('/counts')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('totalCount').innerText = data.total;
+                    document.getElementById('happyCount').innerText = data.happy;
+                    document.getElementById('notHappyCount').innerText = data.not_happy;
+                    document.getElementById('neutralCount').innerText = data.neutral;
+                })
+                .catch(error => console.error('Error fetching counts:', error));
+        }
+
+        // Update counts every 1 second
+        setInterval(fetchCounts, 1000);
+    </script>
+
+</body>
+</html>

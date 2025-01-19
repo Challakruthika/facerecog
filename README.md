@@ -121,14 +121,11 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 This application requires camera access and sufficient computational resources for real-time processing. Performance may vary based on hardware capabilities.
 
-## 👥 Author
 
-[Your Name]
-- GitHub: [@vishwa-glitch](https://github.com/vishwa-glitch)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/vishwa55)
 
 ## 🙏 Acknowledgments
 
 - MediaPipe team for their face detection model
 - DeepFace library contributors
 - Flask framework community
+
